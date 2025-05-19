@@ -23,6 +23,31 @@ jitsi:
           // Branding
           config.dynamicBrandingUrl = '/static/branding.json';
 
+          // Authentication
+          config.tokenAuthUrl = "https://meet.minikube.loc/static/auth.html?state={state}";
+
+          // Prejoin
+          config.prejoinConfig = {
+            enabled: true,
+            hideDisplayName: true,
+          };
+
+          // Deeplinking
+          config.deeplinking = {
+            disabled: true,
+          };
+
+          // Lobby
+          config.lobby = {
+            autoKnock: true,
+            enableChat: true,
+          };
+
+          // Lobby password
+          config.securityUi = {
+            disableLobbyPassword: true,
+          };
+
     extraVolumes:
       - name: "volume-jitsi-web"
         configMap:
@@ -48,6 +73,7 @@ jitsi:
       repository: jitsi/jicofo
       tag: "stable-10184"
     extraEnvs:
+      ENABLE_AUTO_OWNER: "false"
       JICOFO_ENABLE_AUTH: "false"
 
   jvb:
