@@ -1,0 +1,71 @@
+jitsi:
+  publicURL: "meet.minikube.loc"
+
+  websockets:
+    colibri:
+      enabled: false
+    xmpp:
+      enabled: true
+
+  web:
+    replicaCount: 1
+    image:
+      repository: jitsi/web
+      tag: "stable-10184"
+
+    custom:
+      configs:
+        _custom_interface_config_js: ""
+        _custom_config_js: |
+          // Branding
+          config.dynamicBrandingUrl = '/static/branding.json';
+
+    extraVolumes:
+      - name: "volume-jitsi-web"
+        configMap:
+          name: "cm-jitsi-web"
+          items:
+            - key: "branding.json"
+              path: "branding.json"
+
+    extraVolumeMounts:
+      - name: "volume-jitsi-web"
+        subPath: "branding.json"
+        mountPath: "/usr/share/jitsi-meet/static/branding.json"
+
+    ingress:
+      enabled: true
+      hosts:
+        - host: meet.minikube.loc
+          paths: ['/']
+
+  jicofo:
+    replicaCount: 1
+    image:
+      repository: jitsi/jicofo
+      tag: "stable-10184"
+
+  jvb:
+    replicaCount: 2
+    image:
+      repository: jitsi/jvb
+      tag: "stable-10184"
+
+    publicIPs:
+      - 172.18.18.21
+
+    UDPPort: 30011
+    nodePort: 30011
+    service:
+      type: NodePort
+
+    extraEnvs:
+      JVB_DISABLE_STUN: "true"
+
+  octo:
+    enabled: true
+
+  prosody:
+    image:
+      repository: jitsi/prosody
+      tag: "stable-10184"
