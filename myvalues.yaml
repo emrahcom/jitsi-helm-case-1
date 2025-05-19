@@ -1,6 +1,9 @@
 jitsi:
   publicURL: "meet.minikube.loc"
 
+  enableAuth: true
+  enableGuests: true
+
   websockets:
     colibri:
       enabled: false
@@ -73,7 +76,5 @@ jitsi:
       - name: "AUTH_TYPE"
         value: "jwt"
     secretEnvs:
-      - name: "JWT_APP_ID"
-        value: "myappid"
-      - name: "JWT_APP_SECRET"
-        value: "myappsecret"
+      JWT_APP_ID: "myappid"
+      JWT_APP_SECRET: "myappsecret"
