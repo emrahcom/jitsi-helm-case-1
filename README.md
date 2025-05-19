@@ -18,7 +18,8 @@ helm dependency update
 ## myvalues.yaml
 
 [myvalues.yaml](myvalues.yaml) is created using only the critical values from
-the default `values.yaml` of `jitsi-meet` chart.
+the default `values.yaml` of `jitsi-meet` chart and customized according to
+requirements.
 
 To show the default `values.yaml`:
 
