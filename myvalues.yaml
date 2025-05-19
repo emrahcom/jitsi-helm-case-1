@@ -69,3 +69,11 @@ jitsi:
     image:
       repository: jitsi/prosody
       tag: "stable-10184"
+    extraEnvs:
+      - name: "AUTH_TYPE"
+        value: "jwt"
+    secretEnvs:
+      - name: "JWT_APP_ID"
+        value: "myappid"
+      - name: "JWT_APP_SECRET"
+        value: "myappsecret"
