@@ -53,10 +53,15 @@ jitsi:
         configMap:
           name: "cm-jitsi-web"
           items:
+            - key: "auth.html"
+              path: "auth.html"
             - key: "branding.json"
               path: "branding.json"
 
     extraVolumeMounts:
+      - name: "volume-jitsi-web"
+        subPath: "auth.html"
+        mountPath: "/usr/share/jitsi-meet/static/auth.html"
       - name: "volume-jitsi-web"
         subPath: "branding.json"
         mountPath: "/usr/share/jitsi-meet/static/branding.json"

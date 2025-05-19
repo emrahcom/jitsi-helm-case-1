@@ -3,4 +3,5 @@ kind: ConfigMap
 metadata:
   name: cm-jitsi-web
 data:
+{{ (.Files.Glob "files/auth.html").AsConfig | nindent 2 }}
 {{ (.Files.Glob "files/branding.json").AsConfig | nindent 2 }}
