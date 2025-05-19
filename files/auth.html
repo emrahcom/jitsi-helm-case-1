@@ -1,1 +1,53 @@
-Update TOKEN_AUTH_URL in values.yaml according to the identity system.
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>auth</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      #query-params {
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+      .param {
+        margin-bottom: 5px;
+      }
+      .key {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h4>
+      Update <em>TOKEN_AUTH_URL</em> in <em>values.yaml</em> according to the
+      identity system.
+    </h4>
+
+    <h4>
+      Querystrings
+    </h4>
+
+    <div id="query-params"></div>
+
+    <script>
+      const queryParamsDiv = document.getElementById("query-params");
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+
+      if (queryString) {
+        urlParams.forEach((value, key) => {
+          const paramDiv = document.createElement("div");
+          paramDiv.classList.add("param");
+          paramDiv.innerHTML =
+            `<span class="key">${key}:</span> ${value}`;
+          queryParamsDiv.appendChild(paramDiv);
+        });
+      } else {
+        queryParamsDiv.textContent =
+          "No query string parameters found.";
+      }
+    </script>
+  </body>
+</html>
