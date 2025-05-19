@@ -17,15 +17,6 @@ jitsi:
       configs:
         _custom_interface_config_js: ""
         _custom_config_js: |
-          // Branding
-          config.dynamicBrandingUrl = '/static/branding.json';
-
-          // Prejoin
-          config.prejoinConfig = {
-            enabled: true,
-            hideDisplayName: true,
-          };
-
           // Deeplinking
           config.deeplinking = {
             disabled: true,
@@ -43,6 +34,9 @@ jitsi:
           };
 
     extraEnvs:
+      DYNAMIC_BRANDING_URL: "/static/branding.json"
+      ENABLE_PREJOIN_PAGE: "true"
+      HIDE_PREJOIN_DISPLAY_NAME: "true"
       TOKEN_AUTH_URL: "https://meet.minikube.loc/static/auth.html?state={state}"
 
     extraVolumes:
