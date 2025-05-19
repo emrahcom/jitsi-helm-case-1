@@ -1,3 +1,10 @@
+## Get repo
+
+```bash
+git clone https://github.com/emrahcom/jitsi-helm-case-1.git
+cd jitsi-helm-case-1
+```
+
 ## Dependencies
 
 ```bash
