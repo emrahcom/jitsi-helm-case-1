@@ -1,8 +1,12 @@
 ## Get repo
 
+Assumed that `helm`, `git`, etc. are already installed.
+
 ```bash
 git clone https://github.com/emrahcom/jitsi-helm-case-1.git
+
 cd jitsi-helm-case-1
+git pull
 ```
 
 ## Dependencies
