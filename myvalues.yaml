@@ -48,8 +48,7 @@ jitsi:
       repository: jitsi/jicofo
       tag: "stable-10184"
     extraEnvs:
-      - name: "JICOFO_ENABLE_AUTH"
-        value: "false"
+      JICOFO_ENABLE_AUTH: "false"
 
   jvb:
     replicaCount: 2
