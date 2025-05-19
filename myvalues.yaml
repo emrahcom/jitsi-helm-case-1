@@ -1,9 +1,6 @@
 jitsi:
   publicURL: "meet.minikube.loc"
 
-  enableAuth: true
-  enableGuests: true
-
   websockets:
     colibri:
       enabled: false
@@ -22,9 +19,6 @@ jitsi:
         _custom_config_js: |
           // Branding
           config.dynamicBrandingUrl = '/static/branding.json';
-
-          // Authentication
-          config.tokenAuthUrl = "https://meet.minikube.loc/static/auth.html?state={state}";
 
           // Prejoin
           config.prejoinConfig = {
@@ -47,6 +41,9 @@ jitsi:
           config.securityUi = {
             disableLobbyPassword: true,
           };
+
+    extraEnvs:
+      TOKEN_AUTH_URL: "https://meet.minikube.loc/static/auth.html?state={state}"
 
     extraVolumes:
       - name: "volume-jitsi-web"
@@ -108,6 +105,8 @@ jitsi:
     extraEnvs:
       - name: "AUTH_TYPE"
         value: "jwt"
+      - name: "ENABLE_AUTH"
+        value: "true"
     secretEnvs:
       JWT_APP_ID: "myappid"
       JWT_APP_SECRET: "myappsecret"
