@@ -101,8 +101,10 @@ jitsi:
         value: "jwt"
       - name: "ENABLE_AUTH"
         value: "true"
+      - name: "XMPP_MODULES"
+        value: "persistent_lobby"
+      - name: "XMPP_MUC_MODULES"
+        value: "lobby_autostart,token_affiliation,token_lobby_bypass,token_lobby_bypass_for_initiator,lobby_deactivate"
     secretEnvs:
       JWT_APP_ID: "myappid"
       JWT_APP_SECRET: "myappsecret"
-      XMPP_MODULES: "persistent_lobby"
-      XMPP_MUC_MODULES: "lobby_autostart,token_affiliation,token_lobby_bypass,token_lobby_bypass_for_initiator,lobby_deactivate"
