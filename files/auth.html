@@ -1,53 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>auth</title>
-    <style>
-      body {
-        font-family: sans-serif;
-      }
-      #query-params {
-        margin-top: 20px;
-        border: 1px solid #ccc;
-        padding: 10px;
-      }
-      .param {
-        margin-bottom: 5px;
-      }
-      .key {
-        font-weight: bold;
-      }
-    </style>
+    <meta charset="utf-8" />
   </head>
   <body>
-    <h4>
-      Update <em>TOKEN_AUTH_URL</em> in <em>values.yaml</em> according to the
-      identity system.
-    </h4>
+    <p>
+      <a id="guest" href="">join as guest</a>
+      <br/>
+      <em>
+        This link simulates the guest user who has no identity on the system.
+        The authentication system still generates a guest token for her.
+      </em>
+    </p>
 
-    <h4>
-      Querystrings
-    </h4>
+    <p>
+      <a id="member" href="">join as member</a>
+      <br/>
+      <em>
+        This link simulates the member user who has an identity on the system
+        but she has not the moderator right.
+      </em>
+    </p>
 
-    <div id="query-params"></div>
+    <p>
+      <a id="owner1" href="">join as moderator and deactivate the lobby</a>
+      <br/>
+      <em>
+        This link simulates the moderator user who has an identity on the system
+        and she has the moderator right. This moderator removes the lobby
+        automatically after joining the meeting. So, the participants in the
+        waiting room join the meeting after this time.
+        <br/>
+        If the lobby is activated manually or is keeped by another moderator,
+        it will not deactivate the lobby in this case.
+      </em>
+    </p>
+
+    <p>
+      <a id="owner2" href="">join as moderator but keep the lobby</a>
+      <br/>
+      <em>
+        This link simulates the moderator user who has an identity on the system
+        and she has the moderator right. This moderator keeps the lobby. So, the
+        participants in the waiting room still wait for an admit by the
+        moderator.
+      </em>
+    </p>
 
     <script>
-      const queryParamsDiv = document.getElementById("query-params");
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
+      const guestToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJteWFw\
+cGlkIiwiaXNzIjoibXlhcHBpZCIsInN1YiI6IioiLCJyb29tIjoiKiIsImlhdCI6MTc0Nzk4MzUzMSw\
+ibmJmIjoxNzQ3OTgzNDgwLCJleHAiOjE4OTI3MTc4ODAsImNvbnRleHQiOnsidXNlciI6eyJuYW1lIj\
+oiR3Vlc3QiLCJhZmZpbGlhdGlvbiI6Im1lbWJlciIsImxvYmJ5X2J5cGFzcyI6ZmFsc2V9fX0.xAze4\
+wLhOckrCEwLoe8V0wE4IjefFnrT20t7s7245I0`;
+      const memberToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJteWF\
+wcGlkIiwiaXNzIjoibXlhcHBpZCIsInN1YiI6IioiLCJyb29tIjoiKiIsImlhdCI6MTc0Nzk4MzcwMi\
+wibmJmIjoxNzQ3OTgzNDgwLCJleHAiOjE4OTI3MTc4ODAsImNvbnRleHQiOnsidXNlciI6eyJuYW1lI\
+joiTWVtYmVyIiwiYWZmaWxpYXRpb24iOiJtZW1iZXIiLCJsb2JieV9ieXBhc3MiOmZhbHNlfX19.aNy\
+QMaxVc4_jo1xGd3HOM1faqIS6ykBv26iTbYYhcbM`;
+      const owner1Token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJteWF\
+wcGlkIiwiaXNzIjoibXlhcHBpZCIsInN1YiI6IioiLCJyb29tIjoiKiIsImlhdCI6MTc0Nzk4Mzg0Ny\
+wibmJmIjoxNzQ3OTgzNDgwLCJleHAiOjE4OTI3MTc4ODAsImNvbnRleHQiOnsidXNlciI6eyJuYW1lI\
+joiTW9kZXJhdG9yMSIsImFmZmlsaWF0aW9uIjoib3duZXIiLCJsb2JieV9ieXBhc3MiOnRydWV9fX0.\
+BJppXte-LrFp4Ux3XXpiTvlJO-uMCamvskQ1jC6EMng`;
+      const owner2Token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJteWF\
+wcGlkIiwiaXNzIjoibXlhcHBpZCIsInN1YiI6IioiLCJyb29tIjoiKiIsImlhdCI6MTc0Nzk4Mzk3Ny\
+wibmJmIjoxNzQ3OTgzNDgwLCJleHAiOjE4OTI3MTc4ODAsImNvbnRleHQiOnsidXNlciI6eyJuYW1lI\
+joiTW9kZXJhdG9yMiIsImFmZmlsaWF0aW9uIjoib3duZXIiLCJsb2JieV9ieXBhc3MiOnRydWV9LCJy\
+b29tIjp7ImxvYmJ5Ijp0cnVlfX19.XwTlZ0FRRI4MIX7UchvUXMdc3UTSUMzRpr5sbV9Qhac`;
 
-      if (queryString) {
-        urlParams.forEach((value, key) => {
-          const paramDiv = document.createElement("div");
-          paramDiv.classList.add("param");
-          paramDiv.innerHTML =
-            `<span class="key">${key}:</span> ${value}`;
-          queryParamsDiv.appendChild(paramDiv);
-        });
-      } else {
-        queryParamsDiv.textContent =
-          "No querystring found.";
-      }
+      const search = globalThis.location.search.substr(1);
+      const searchParams = new URLSearchParams(search);
+      const jsonState = searchParams.get("state");
+      const state = JSON.parse(jsonState);
+      console.error(state);
+
+      let path = `/${state.room}`;
+      if (state.tenant) path = `/${state.tenant}/${state.room}`;
+      console.error(path);
+
+      const qs = "lang=en";
+      const hash = "config.prejoinConfig.enabled=true&config.deeplinking.disabled=false";
+
+      document.getElementById("guest").href = `${path}?jwt=${guestToken}&${qs}#${hash}`;
+      document.getElementById("member").href = `${path}?jwt=${memberToken}&${qs}#${hash}`;
+      document.getElementById("owner1").href = `${path}?jwt=${owner1Token}&${qs}#${hash}`;
+      document.getElementById("owner2").href = `${path}?jwt=${owner2Token}&${qs}#${hash}`;
     </script>
   </body>
 </html>
