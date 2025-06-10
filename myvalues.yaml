@@ -71,6 +71,7 @@ jitsi:
     extraEnvs:
       ENABLE_AUTO_OWNER: "false"
       JICOFO_ENABLE_AUTH: "false"
+      JICOFO_ENABLE_REST: "true"
 
   jvb:
     replicaCount: 2
