@@ -11,7 +11,7 @@ jitsi:
     replicaCount: 1
     image:
       repository: jitsi/web
-      tag: "stable-10184"
+      tag: "stable-10314"
 
     custom:
       configs:
@@ -67,7 +67,7 @@ jitsi:
     replicaCount: 1
     image:
       repository: jitsi/jicofo
-      tag: "stable-10184"
+      tag: "stable-10314"
     extraEnvs:
       ENABLE_AUTO_OWNER: "false"
       JICOFO_ENABLE_AUTH: "false"
@@ -76,7 +76,7 @@ jitsi:
     replicaCount: 2
     image:
       repository: jitsi/jvb
-      tag: "stable-10184"
+      tag: "stable-10314"
 
     publicIPs:
       - 172.18.18.21
@@ -95,7 +95,7 @@ jitsi:
   prosody:
     image:
       repository: jitsi/prosody
-      tag: "stable-10184"
+      tag: "stable-10314"
     extraEnvs:
       - name: "AUTH_TYPE"
         value: "jwt"
