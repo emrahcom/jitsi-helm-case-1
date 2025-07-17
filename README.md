@@ -24,7 +24,7 @@ requirements.
 To show the default `values.yaml`:
 
 ```bash
-helm show values charts/jitsi-meet-1.4.1.tgz
+helm show values charts/jitsi-meet-1.5.1.tgz
 ```
 
 A few lines from the custom [myvalues.yaml](myvalues.yaml):
@@ -37,7 +37,7 @@ jitsi:
     replicaCount: 1
     image:
       repository: jitsi/web
-      tag: "stable-10184"
+      tag: "stable-10314"
 ```
 
 ## Install

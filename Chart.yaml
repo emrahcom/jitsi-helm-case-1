@@ -1,9 +1,9 @@
 apiVersion: v2
 name: my-jitsi
 description: A Helm chart for Jitsi
-version: 0.1.0
+version: 0.2.0
 dependencies:
   - name: jitsi-meet
-    version: 1.4.1
+    version: 1.5.1
     repository: https://jitsi-contrib.github.io/jitsi-helm
     alias: jitsi
